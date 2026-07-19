@@ -828,5 +828,34 @@ document.addEventListener('copy',e=>e.preventDefault());
 document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
  if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)||((e.ctrlKey||e.metaKey)&&['u','s'].indexOf(k)>-1)){e.preventDefault();return false;}});
 </script>
-</body>
+
+<style>
+#_nav{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:100000;display:flex;gap:6px;
+ background:rgba(10,15,28,.82);border:1px solid rgba(125,178,255,.28);border-radius:99px;padding:5px;
+ backdrop-filter:blur(10px);font-family:Outfit,system-ui,sans-serif}
+#_nav a{display:grid;place-items:center;min-width:34px;height:34px;padding:0 12px;border-radius:99px;
+ color:#cfe0ff;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#_nav a:active{background:rgba(59,109,255,.3)}
+#_nav a.mid{background:rgba(59,109,255,.16)}
+</style>
+<div id="_nav">
+ <a id="_prev">‹</a><a class="mid" href="../">🖼 Все примеры</a><a id="_next">›</a>
+</div>
+<script>
+var _R=[["Барбершоп","../beauty/"],["Магазин","../shop/"],["Транспорт","../services/"],
+["Автосервис","../preview.html?cat=auto"],["Ремонт","../preview.html?cat=repair"],
+["Кафе","../preview.html?cat=food"],["Здоровье","../preview.html?cat=health"]];
+var _i=2,_n=_R.length;
+document.getElementById("_prev").href=_R[(_i-1+_n)%_n][1];
+document.getElementById("_next").href=_R[(_i+1)%_n][1];
+</script>
+<style id="_lighttheme">
+:root{
+ --bg:#f4f7fc;--bg-soft:#eaf0f9;--surface:#ffffff;--surface-2:#f2f6fc;
+ --line:#dbe3f0;--line-soft:#e9eff7;--text:#0f1b30;--muted:#5a6b88;--muted-2:#8493ab;
+}
+body{background:#f4f7fc!important;color:#0f1b30!important}
+section,header,footer{background:transparent}
+::selection{background:#3b6dff;color:#fff}
+</style></body>
 </html>

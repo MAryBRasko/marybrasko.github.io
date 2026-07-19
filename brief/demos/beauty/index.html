@@ -52,7 +52,7 @@
   .form button{margin-top:6px;}
 
   footer{padding:30px 24px; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid #2a2a2d;}
-  .wa-float{position:fixed; bottom:24px; right:24px; background:#25D366; color:#fff; width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 6px 16px rgba(0,0,0,0.4); z-index:20;}
+  .wa-float{position:fixed; bottom:24px; right:24px; background:#c9a24a; color:#fff; width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 6px 16px rgba(0,0,0,0.4); z-index:20;}
 
   @media (max-width:760px){
     nav ul{display:none;}
@@ -170,5 +170,30 @@ document.addEventListener('copy',e=>e.preventDefault());
 document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
  if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)||((e.ctrlKey||e.metaKey)&&['u','s'].indexOf(k)>-1)){e.preventDefault();return false;}});
 </script>
-</body>
+
+<style>
+#_nav{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:100000;display:flex;gap:6px;
+ background:rgba(10,15,28,.82);border:1px solid rgba(125,178,255,.28);border-radius:99px;padding:5px;
+ backdrop-filter:blur(10px);font-family:Outfit,system-ui,sans-serif}
+#_nav a{display:grid;place-items:center;min-width:34px;height:34px;padding:0 12px;border-radius:99px;
+ color:#cfe0ff;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#_nav a:active{background:rgba(59,109,255,.3)}
+#_nav a.mid{background:rgba(59,109,255,.16)}
+</style>
+<div id="_nav">
+ <a id="_prev">‹</a><a class="mid" href="../">🖼 Все примеры</a><a id="_next">›</a>
+</div>
+<script>
+var _R=[["Барбершоп","../beauty/"],["Магазин","../shop/"],["Транспорт","../services/"],
+["Автосервис","../preview.html?cat=auto"],["Ремонт","../preview.html?cat=repair"],
+["Кафе","../preview.html?cat=food"],["Здоровье","../preview.html?cat=health"]];
+var _i=0,_n=_R.length;
+document.getElementById("_prev").href=_R[(_i-1+_n)%_n][1];
+document.getElementById("_next").href=_R[(_i+1)%_n][1];
+</script>
+<style>
+:root{--bg:#100d09;--bg2:#1a1611}
+h1,h2,h3{letter-spacing:-.01em}
+::selection{background:#c9a24a;color:#100d09}
+</style></body>
 </html>
