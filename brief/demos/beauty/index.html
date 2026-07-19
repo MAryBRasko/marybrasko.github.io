@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLACKWOOD BARBER — демо-лендинг</title>
+<style>
+  :root{
+    --bg:#0f0f10; --bg2:#17171a; --gold:#c9a227; --text:#f2f0e9; --muted:#9a958a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI', Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.5;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
+
+  header{position:sticky; top:0; background:rgba(15,15,16,0.92); backdrop-filter:blur(6px); z-index:10; border-bottom:1px solid #2a2a2d;}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 24px;}
+  .logo{font-weight:700; letter-spacing:2px; font-size:18px;}
+  .logo span{color:var(--gold);}
+  nav ul{display:flex; gap:28px; list-style:none; font-size:14px; color:var(--muted);}
+  .btn{background:var(--gold); color:#161616; padding:10px 20px; border-radius:6px; font-weight:600; font-size:14px; display:inline-block;}
+
+  .hero{padding:90px 24px 70px; text-align:center; background:radial-gradient(circle at 50% -10%, #2a2410 0, var(--bg) 60%);}
+  .hero h1{font-size:42px; font-weight:800; margin-bottom:16px;}
+  .hero h1 span{color:var(--gold);}
+  .hero p{color:var(--muted); max-width:520px; margin:0 auto 30px; font-size:16px;}
+  .hero-cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .btn-outline{border:1px solid var(--gold); color:var(--gold); padding:10px 20px; border-radius:6px; font-weight:600; font-size:14px;}
+
+  .photo-row{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:50px;}
+  .photo-row div{aspect-ratio:1; border-radius:8px; background:linear-gradient(135deg,#2b2b2e,#1a1a1c); display:flex; align-items:center; justify-content:center; color:#55524a; font-size:12px;}
+
+  section{padding:70px 24px;}
+  .section-title{text-align:center; margin-bottom:42px;}
+  .section-title h2{font-size:30px; font-weight:800;}
+  .section-title p{color:var(--muted); margin-top:8px;}
+
+  .services{background:var(--bg2);}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .card{background:var(--bg); border:1px solid #2a2a2d; border-radius:10px; padding:28px;}
+  .card h3{font-size:18px; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14px; margin-bottom:14px;}
+  .price{color:var(--gold); font-weight:700; font-size:20px;}
+
+  .gallery .photo-row{grid-template-columns:repeat(4,1fr);}
+
+  .booking{text-align:center; background:linear-gradient(135deg,#1c1810,#0f0f10);}
+  .booking h2{font-size:30px; font-weight:800; margin-bottom:14px;}
+  .booking p{color:var(--muted); margin-bottom:28px;}
+  .form{max-width:420px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
+  .form input{padding:13px 16px; border-radius:6px; border:1px solid #333; background:#17171a; color:var(--text); font-size:14px;}
+  .form button{margin-top:6px;}
+
+  footer{padding:30px 24px; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid #2a2a2d;}
+  .wa-float{position:fixed; bottom:24px; right:24px; background:#25D366; color:#fff; width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 6px 16px rgba(0,0,0,0.4); z-index:20;}
+
+  @media (max-width:760px){
+    nav ul{display:none;}
+    .grid3{grid-template-columns:1fr;}
+    .photo-row{grid-template-columns:repeat(2,1fr);}
+    .hero h1{font-size:30px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="logo">BLACKWOOD <span>BARBER</span></div>
+    <nav><ul>
+      <li>Услуги</li><li>Цены</li><li>Галерея</li><li>Контакты</li>
+    </ul></nav>
+    <a class="btn" href="#booking">Записаться</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Стрижка, после которой<br><span>хочется фотографироваться</span></h1>
+    <p>Барбершоп в центре города. Запись онлайн за 30 секунд — без звонков и ожидания на линии.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#booking">Записаться онлайн</a>
+      <a class="btn-outline" href="#">Написать в WhatsApp</a>
+    </div>
+    <div class="photo-row">
+      <div>фото мастера</div><div>фото интерьера</div><div>фото стрижки</div><div>фото отзыва</div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <div class="section-title">
+      <h2>Услуги и цены</h2>
+      <p>Можно заменить на свои — структура остаётся прежней</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Мужская стрижка</h3>
+        <p>Стрижка машинкой и ножницами, укладка, мытьё головы</p>
+        <div class="price">от 1 500 ₽</div>
+      </div>
+      <div class="card">
+        <h3>Стрижка + борода</h3>
+        <p>Полный уход: стрижка, оформление и моделирование бороды</p>
+        <div class="price">от 2 200 ₽</div>
+      </div>
+      <div class="card">
+        <h3>Детская стрижка</h3>
+        <p>Для детей до 12 лет, в спокойном темпе</p>
+        <div class="price">от 1 000 ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-title">
+      <h2>Галерея работ</h2>
+      <p>Сюда подставляются реальные фото клиента</p>
+    </div>
+    <div class="photo-row">
+      <div>фото 1</div><div>фото 2</div><div>фото 3</div><div>фото 4</div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap">
+    <h2>Записаться на стрижку</h2>
+    <p>Оставьте телефон — мастер свяжется и подтвердит время</p>
+    <div class="form">
+      <input type="text" placeholder="Ваше имя">
+      <input type="tel" placeholder="Телефон">
+      <button class="btn" type="button">Отправить заявку</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    ул. Примерная, 10 · ежедневно 10:00–21:00 · +7 (999) 000-00-00<br>
+    Демо-лендинг подготовлен как пример работы для презентации клиентам
+  </div>
+</footer>
+
+<div class="wa-float">●</div>
+
+
+<style>
+#_wm{position:fixed;bottom:78px;right:12px;z-index:99998;background:rgba(59,109,255,.16);color:#cfe0ff;
+ border:1px solid rgba(125,178,255,.3);border-radius:99px;padding:6px 13px;font:600 11px/1 Outfit,system-ui,sans-serif;
+ letter-spacing:.08em;pointer-events:none;backdrop-filter:blur(6px)}
+#_wmbg{position:fixed;inset:0;z-index:99990;pointer-events:none;
+ background:repeating-linear-gradient(-30deg,transparent,transparent 140px,rgba(255,255,255,.018) 140px,rgba(255,255,255,.018) 280px)}
+#_cta{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:99999;
+ background:linear-gradient(135deg,#3b6dff,#5b86ff);color:#fff;text-decoration:none;
+ font:700 15px/1 Outfit,system-ui,sans-serif;padding:15px 26px;border-radius:14px;
+ box-shadow:0 10px 34px rgba(59,109,255,.5);white-space:nowrap;
+ -webkit-tap-highlight-color:transparent}
+#_cta:active{transform:translateX(-50%) scale(.97)}
+html,body{-webkit-user-select:none;user-select:none}
+</style>
+<div id="_wmbg"></div><div id="_wm">ДЕМО · A.R. Agency</div>
+<a id="_cta" href="../../?from=demo&cat=beauty">✨ Хочу такой сайт — заявка</a>
+<script>
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('copy',e=>e.preventDefault());
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)||((e.ctrlKey||e.metaKey)&&['u','s'].indexOf(k)>-1)){e.preventDefault();return false;}});
+</script>
+</body>
+</html>

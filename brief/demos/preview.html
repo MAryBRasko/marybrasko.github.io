@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Примеры сайтов · A.R. Business Agency</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b14;--tx:#eef3ff;--mut:#9fb0cf;--card:#0e1524;--line:#1e2a44;--e:cubic-bezier(.16,1,.3,1);--ac:#3b6dff;--ac2:#7db2ff}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+/* переключатель ниш */
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;overflow-x:auto;padding:12px;background:rgba(7,11,20,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tab{white-space:nowrap;font:inherit;font-size:14px;font-weight:600;color:var(--tx);background:var(--card);border:1.5px solid var(--line);border-radius:99px;padding:8px 15px;cursor:pointer;transition:.25s var(--e)}
+.tab.on{background:var(--ac);border-color:var(--ac);color:#fff}
+/* демо */
+.demo{max-width:520px;margin:0 auto;padding:0 0 90px}
+.hero{position:relative;padding:54px 22px 40px;text-align:center;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,color-mix(in srgb,var(--ac) 55%,#000),#0a0f1c 70%)}
+.hero .badge{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac2);border:1px solid var(--line);border-radius:99px;padding:5px 13px;margin-bottom:16px}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.08;text-wrap:balance}
+.hero p{color:var(--mut);margin-top:12px;font-size:16px}
+.hero .cta{display:inline-block;margin-top:22px;background:var(--ac);color:#fff;font-weight:700;font-size:15px;border:none;border-radius:13px;padding:14px 26px;cursor:pointer;box-shadow:0 10px 30px color-mix(in srgb,var(--ac) 40%,transparent)}
+.sec{padding:30px 18px}
+.sec h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:600;margin-bottom:16px}
+.svcs{display:grid;gap:12px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.svc .em{font-size:26px}.svc h3{font-size:18px;font-weight:600;margin:8px 0 4px}
+.svc p{color:var(--mut);font-size:14px}.svc .pr{margin-top:10px;font-weight:700;color:var(--ac2)}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g{aspect-ratio:1;border-radius:14px;display:grid;place-items:center;font-size:34px;border:1px solid var(--line)}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:15px}
+.rev .st{color:#f5b544;margin-bottom:8px}.rev .nm{color:var(--mut);font-size:13px;margin-top:8px}
+.foot{text-align:center;padding:24px;color:var(--mut);font-size:13px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(7,11,20,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));max-width:520px;margin:0 auto}
+.bar button{width:100%;font:inherit;font-weight:700;font-size:16px;background:var(--ac);color:#fff;border:none;border-radius:13px;padding:15px;cursor:pointer}
+/* watermark */
+.wm{position:fixed;inset:0;z-index:15;pointer-events:none;background-image:repeating-linear-gradient(-30deg,transparent,transparent 120px,rgba(255,255,255,.02) 120px,rgba(255,255,255,.02) 240px)}
+.wm b{position:fixed;bottom:74px;right:12px;background:rgba(59,109,255,.14);color:#bcd2ff;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:11px;letter-spacing:.08em;font-weight:600}
+</style>
+</head>
+<body oncontextmenu="return false">
+<div class="tabs" id="tabs"></div>
+<div class="demo" id="demo"></div>
+<div class="wm"><b>ДЕМО · A.R. Agency</b></div>
+<div class="bar"><button id="order">✨ Хочу такой сайт — оставить заявку</button></div>
+
+<script>
+const tg=window.Telegram?.WebApp; try{tg?.ready();tg?.expand();}catch(e){}
+// защита от копирования кода (мягкие деттеренты)
+document.addEventListener('keydown',e=>{
+  const k=e.key.toLowerCase();
+  if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].includes(k))||((e.ctrlKey||e.metaKey)&&['u','s'].includes(k))){e.preventDefault();return false;}
+});
+document.addEventListener('copy',e=>e.preventDefault());
+
+const CATS={
+ beauty:{t:'Бьюти',ac:'#e0489a',badge:'Салон красоты',h:'Красота, к которой хочется возвращаться',s:'Онлайн-запись за 10 секунд · без звонков',
+   svc:[['💇','Стрижка и укладка','Топ-мастера, авторские техники','от 1 500 ₽'],['💅','Маникюр · педикюр','Стерильно, стойкое покрытие','от 1 200 ₽'],['✨','Брови · ресницы','Натуральный эффект','от 900 ₽']],
+   gal:['💆','💅','💄','🌸'],rev:'«Записалась онлайн, пришла — всё идеально. Теперь только сюда!»',nm:'— Анна, клиент'},
+ auto:{t:'Авто',ac:'#f5b544',badge:'Автосервис',h:'Ремонт, которому доверяют',s:'Честная диагностика · гарантия на работы',
+   svc:[['🔧','Ремонт и ТО','Любые марки, оригинал-запчасти','от 2 000 ₽'],['🛞','Шиномонтаж','Балансировка, хранение','от 800 ₽'],['✨','Детейлинг','Химчистка, полировка, керамика','от 3 500 ₽']],
+   gal:['🚗','🔧','🛞','🏁'],rev:'«Сделали быстро, объяснили по-человечески. Цена честная.»',nm:'— Игорь, клиент'},
+ repair:{t:'Ремонт',ac:'#22c39a',badge:'Ремонт и интерьер',h:'Ремонт под ключ без нервов',s:'Смета фиксируется · сроки в договоре',
+   svc:[['🏠','Ремонт квартир','Дизайн-проект, черновой и чистовой','от 5 000 ₽/м²'],['🪟','Окна и потолки','Монтаж за 1 день','от 1 200 ₽'],['🛋️','Мебель на заказ','Кухни, шкафы по размерам','по проекту']],
+   gal:['🏠','🪟','🛋️','🚪'],rev:'«Уложились в смету и срок. Квартиру не узнать — космос!»',nm:'— Марина, клиент'},
+ food:{t:'Еда',ac:'#ff7043',badge:'Кафе · доставка',h:'Вкусно. Быстро. С доставкой',s:'Заказ онлайн · доставка 40 минут',
+   svc:[['🍕','Горячее меню','Готовим на своей кухне','от 350 ₽'],['🥗','ПП и салаты','Свежесть каждый день','от 250 ₽'],['🍰','Десерты','Торты на заказ','от 900 ₽']],
+   gal:['🍕','🍔','🥗','🍰'],rev:'«Заказываю каждую неделю — вкусно и всегда вовремя.»',nm:'— Дмитрий, клиент'},
+ services:{t:'Услуги',ac:'#3b6dff',badge:'Услуги для бизнеса и дома',h:'Ваша задача — наша забота',s:'Оставьте заявку — перезвоним за 15 минут',
+   svc:[['🧰','Мастер на час','Сантехника, электрика, мелкий ремонт','от 900 ₽'],['🧹','Клининг','Квартиры и офисы','от 2 500 ₽'],['📦','Доставка · переезды','Аккуратно и в срок','от 1 500 ₽']],
+   gal:['🧰','🧹','📦','🔑'],rev:'«Приехали вовремя, сделали чисто. Рекомендую!»',nm:'— Ольга, клиент'},
+ health:{t:'Здоровье',ac:'#2bb6c7',badge:'Клиника · здоровье',h:'Забота о вас — наш приоритет',s:'Запись онлайн · опытные специалисты',
+   svc:[['🦷','Стоматология','Лечение без боли, гарантия','от 1 500 ₽'],['💆','Массаж · СПА','Восстановление и релакс','от 1 800 ₽'],['🩺','Диагностика','Полный чек-ап организма','от 2 500 ₽']],
+   gal:['🦷','💆','🩺','💊'],rev:'«Внимательные врачи, всё объяснили. Ничего не болит!»',nm:'— Сергей, клиент'},
+ shop:{t:'Магазин',ac:'#8b5cf6',badge:'Интернет-магазин',h:'Всё, что нужно — в пару кликов',s:'Каталог онлайн · доставка по городу',
+   svc:[['🛍️','Большой каталог','Сотни товаров в наличии','—'],['🚚','Быстрая доставка','Привезём сегодня','от 200 ₽'],['💳','Удобная оплата','Картой, СБП, при получении','—']],
+   gal:['🛍️','📦','💳','🎁'],rev:'«Заказал вечером — привезли утром. Всё как на фото!»',nm:'— Павел, клиент'},
+};
+const order=['beauty','auto','repair','food','services','health','shop'];
+let cur=new URLSearchParams(location.search).get('cat'); if(!CATS[cur]) cur='beauty';
+
+function render(){
+  const c=CATS[cur];
+  document.documentElement.style.setProperty('--ac',c.ac);
+  document.getElementById('tabs').innerHTML=order.map(k=>
+    `<button class="tab${k===cur?' on':''}" data-k="${k}">${CATS[k].t}</button>`).join('');
+  document.getElementById('demo').innerHTML=`
+    <div class="hero"><span class="badge">${c.badge}</span><h1>${c.h}</h1><p>${c.s}</p>
+      <button class="cta" onclick="doOrder()">Записаться / Заявка</button></div>
+    <div class="sec"><h2>Услуги и цены</h2><div class="svcs">${c.svc.map(s=>
+      `<div class="svc"><div class="em">${s[0]}</div><h3>${s[1]}</h3><p>${s[2]}</p><div class="pr">${s[3]}</div></div>`).join('')}</div></div>
+    <div class="sec"><h2>Наши работы</h2><div class="gal">${c.gal.map(g=>
+      `<div class="g" style="background:radial-gradient(120% 120% at 30% 20%,color-mix(in srgb,${c.ac} 45%,#0a0f1c),#0a0f1c)">${g}</div>`).join('')}</div></div>
+    <div class="sec"><h2>Отзыв</h2><div class="rev"><div class="st">★★★★★</div>${c.rev}<div class="nm">${c.nm}</div></div></div>
+    <div class="foot">Это обезличенный демо-шаблон. Ваш сайт соберём под ваш бренд, фото и услуги.<br>A.R. Business Agency</div>`;
+  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{cur=b.dataset.k;render();window.scrollTo({top:0,behavior:'smooth'});});
+}
+function doOrder(){
+  // демо и бриф — один web-app: переходим в бриф с выбранной нишей
+  location.href='../?from=demo&cat='+cur;
+}
+document.getElementById('order').onclick=doOrder;
+render();
+</script>
+</body>
+</html>
