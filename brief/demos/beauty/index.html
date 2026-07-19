@@ -2,198 +2,189 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BLACKWOOD BARBER — демо-лендинг</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Барбершоп — демо · A.R. Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
-  :root{
-    --bg:#0f0f10; --bg2:#17171a; --gold:#c9a227; --text:#f2f0e9; --muted:#9a958a;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{font-family:'Segoe UI', Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.5;}
-  a{color:inherit; text-decoration:none;}
-  .wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
-
-  header{position:sticky; top:0; background:rgba(15,15,16,0.92); backdrop-filter:blur(6px); z-index:10; border-bottom:1px solid #2a2a2d;}
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 24px;}
-  .logo{font-weight:700; letter-spacing:2px; font-size:18px;}
-  .logo span{color:var(--gold);}
-  nav ul{display:flex; gap:28px; list-style:none; font-size:14px; color:var(--muted);}
-  .btn{background:var(--gold); color:#161616; padding:10px 20px; border-radius:6px; font-weight:600; font-size:14px; display:inline-block;}
-
-  .hero{padding:90px 24px 70px; text-align:center; background:radial-gradient(circle at 50% -10%, #2a2410 0, var(--bg) 60%);}
-  .hero h1{font-size:42px; font-weight:800; margin-bottom:16px;}
-  .hero h1 span{color:var(--gold);}
-  .hero p{color:var(--muted); max-width:520px; margin:0 auto 30px; font-size:16px;}
-  .hero-cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
-  .btn-outline{border:1px solid var(--gold); color:var(--gold); padding:10px 20px; border-radius:6px; font-weight:600; font-size:14px;}
-
-  .photo-row{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:50px;}
-  .photo-row div{aspect-ratio:1; border-radius:8px; background:linear-gradient(135deg,#2b2b2e,#1a1a1c); display:flex; align-items:center; justify-content:center; color:#55524a; font-size:12px;}
-
-  section{padding:70px 24px;}
-  .section-title{text-align:center; margin-bottom:42px;}
-  .section-title h2{font-size:30px; font-weight:800;}
-  .section-title p{color:var(--muted); margin-top:8px;}
-
-  .services{background:var(--bg2);}
-  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  .card{background:var(--bg); border:1px solid #2a2a2d; border-radius:10px; padding:28px;}
-  .card h3{font-size:18px; margin-bottom:8px;}
-  .card p{color:var(--muted); font-size:14px; margin-bottom:14px;}
-  .price{color:var(--gold); font-weight:700; font-size:20px;}
-
-  .gallery .photo-row{grid-template-columns:repeat(4,1fr);}
-
-  .booking{text-align:center; background:linear-gradient(135deg,#1c1810,#0f0f10);}
-  .booking h2{font-size:30px; font-weight:800; margin-bottom:14px;}
-  .booking p{color:var(--muted); margin-bottom:28px;}
-  .form{max-width:420px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
-  .form input{padding:13px 16px; border-radius:6px; border:1px solid #333; background:#17171a; color:var(--text); font-size:14px;}
-  .form button{margin-top:6px;}
-
-  footer{padding:30px 24px; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid #2a2a2d;}
-  .wa-float{position:fixed; bottom:24px; right:24px; background:#c9a24a; color:#fff; width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 6px 16px rgba(0,0,0,0.4); z-index:20;}
-
-  @media (max-width:760px){
-    nav ul{display:none;}
-    .grid3{grid-template-columns:1fr;}
-    .photo-row{grid-template-columns:repeat(2,1fr);}
-    .hero h1{font-size:30px;}
-  }
+:root{--bg:#0d0c0a;--bg2:#141210;--gold:#c9a24a;--gold2:#e6c477;--cream:#f3ede1;--mut:#9a9184;--line:rgba(201,162,74,.22)}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{overflow-x:hidden;width:100%;max-width:100%;position:relative}
+h1,h2,h3,.disp{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.01em;line-height:.98}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.amb{position:fixed;width:60vw;height:60vw;border-radius:50%;filter:blur(120px);z-index:0;pointer-events:none;
+  background:radial-gradient(circle,rgba(201,162,74,.16),transparent 70%);top:-15vw;right:-15vw}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 22px;transition:background .4s,backdrop-filter .4s}
+.nav.sc{background:rgba(13,12,10,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{font-family:'Oswald';font-weight:700;font-size:22px;letter-spacing:.14em}
+.brand b{color:var(--gold)}
+.nav .book{font-family:'Oswald';font-weight:600;letter-spacing:.08em;font-size:14px;border:1px solid var(--gold);
+  color:var(--gold);padding:10px 20px;border-radius:2px;transition:.4s cubic-bezier(.16,1,.3,1)}
+.nav .book:hover{background:var(--gold);color:#0d0c0a}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;z-index:2}
+.hero-bg{position:absolute;inset:0;z-index:-1;background-size:cover;background-position:center;
+  filter:grayscale(.4) contrast(1.15) brightness(.42)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,12,10,.55),rgba(13,12,10,.4) 40%,var(--bg))}
+.hero .wrap{text-align:center;padding-top:90px;padding-bottom:60px}
+.kick{font-family:'Oswald';letter-spacing:.32em;font-size:13px;color:var(--gold);margin-bottom:26px;font-weight:500}
+.hero h1{font-size:clamp(3.2rem,11vw,7.4rem);max-width:16ch;margin:0 auto;font-weight:700}
+.hero h1 .g{color:var(--gold)}
+.hero p{max-width:52ch;margin:30px auto 0;color:var(--mut);font-size:clamp(15px,2.2vw,18px)}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.btn{font-family:'Oswald';font-weight:600;letter-spacing:.08em;font-size:15px;padding:16px 34px;border-radius:2px;cursor:pointer;border:1px solid var(--gold);transition:.5s cubic-bezier(.16,1,.3,1);text-transform:uppercase}
+.btn-g{background:var(--gold);color:#0d0c0a}.btn-g:hover{background:var(--gold2);box-shadow:0 12px 40px rgba(201,162,74,.3)}
+.btn-o{color:var(--cream);border-color:rgba(243,237,225,.3)}.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.mq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2;background:var(--bg2)}
+.mq-t{display:inline-block;font-family:'Oswald';font-size:34px;font-weight:600;text-transform:uppercase;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px var(--gold);animation:mq 26s linear infinite}
+.mq-t span{margin:0 26px;color:transparent;-webkit-text-stroke:1px rgba(243,237,225,.35)}
+.mq-t span.f{color:var(--gold);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{position:relative;z-index:2}
+.sec{padding:clamp(80px,14vw,150px) 0}
+.lbl{font-family:'Oswald';letter-spacing:.28em;font-size:13px;color:var(--gold);font-weight:500}
+.sec h2{font-size:clamp(2.4rem,6vw,4.4rem);margin-top:16px;max-width:20ch}
+.reveal{opacity:0;transform:translateY(30px)}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.about p{color:var(--mut);font-size:17px;margin-top:22px;max-width:46ch}
+.about .stats{display:flex;gap:40px;margin-top:36px}
+.about .stats b{font-family:'Oswald';font-size:44px;color:var(--gold);display:block;line-height:1}
+.about .stats span{font-size:13px;color:var(--mut);letter-spacing:.05em}
+.ph{position:relative;aspect-ratio:3/4;border:1px solid var(--line);overflow:hidden;background-size:cover;background-position:center;filter:grayscale(.3) contrast(1.1)}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:56px;border:1px solid var(--line)}
+.svc .it{padding:34px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .5s}
+.svc .it:nth-child(2n){border-right:0}
+.svc .it:hover{background:var(--bg2)}
+.svc .it .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.svc .it h3{font-size:26px}
+.svc .it .pr{font-family:'Oswald';color:var(--gold);font-size:24px;white-space:nowrap}
+.svc .it p{color:var(--mut);font-size:14px;margin-top:10px}
+.mst{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.mst .m{aspect-ratio:3/4;border:1px solid var(--line);display:grid;place-items:center;text-align:center;gap:8px;
+  background:radial-gradient(130% 100% at 30% 15%,rgba(201,162,74,.1),var(--bg2));color:var(--mut);font-size:13px;padding:14px}
+.mst .m .ic{font-family:'Oswald';font-size:30px;color:var(--gold);opacity:.5}
+.mst .m b{display:block;color:var(--cream);font-family:'Oswald';font-size:17px;letter-spacing:.04em}
+.rev{border:1px solid var(--line);padding:clamp(34px,6vw,60px);margin-top:40px;background:var(--bg2)}
+.rev .q{font-family:'Oswald';font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.15;text-transform:none;font-weight:500}
+.rev .who{margin-top:24px;color:var(--gold);font-family:'Oswald';letter-spacing:.08em;font-size:14px}
+.stars{color:var(--gold);letter-spacing:4px;font-size:18px}
+.final{text-align:center;padding:clamp(90px,16vw,170px) 0}
+.final h2{font-size:clamp(2.6rem,8vw,5.6rem);max-width:16ch;margin:0 auto}
+.final p{color:var(--mut);margin-top:22px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--mut);font-size:14px;text-align:center;position:relative;z-index:2}
+@media(max-width:760px){.two,.svc,.mst{grid-template-columns:1fr}.svc .it{border-right:0}.about .stats{gap:26px}}
+#dnav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:100000;display:flex;gap:5px;
+  background:rgba(13,12,10,.8);border:1px solid var(--line);border-radius:99px;padding:5px;backdrop-filter:blur(10px)}
+#dnav a{display:grid;place-items:center;min-width:32px;height:32px;padding:0 12px;color:var(--gold);font:600 13px/1 'Oswald';letter-spacing:.06em;border-radius:99px}
+#dnav a:active{background:rgba(201,162,74,.25)}
+#dwm{position:fixed;bottom:74px;right:12px;z-index:100000;background:rgba(201,162,74,.14);color:var(--gold2);
+  border:1px solid var(--line);border-radius:99px;padding:5px 12px;font:600 11px/1 'Oswald';letter-spacing:.1em;pointer-events:none}
+#dcta{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:100000;background:var(--gold);color:#0d0c0a;
+  font:700 14px/1 'Oswald';letter-spacing:.06em;text-transform:uppercase;padding:15px 28px;border-radius:2px;box-shadow:0 10px 34px rgba(201,162,74,.4);white-space:nowrap}
 </style>
 </head>
-<body>
+<body oncontextmenu="return false">
+<div class="grain"></div><div class="amb"></div>
+<main>
+  <nav class="nav" id="nav">
+    <div class="brand">ГИЛЬ<b>ДИЯ</b></div>
+    <a class="book" href="#book">Записаться</a>
+  </nav>
 
-<header>
-  <div class="nav wrap">
-    <div class="logo">BLACKWOOD <span>BARBER</span></div>
-    <nav><ul>
-      <li>Услуги</li><li>Цены</li><li>Галерея</li><li>Контакты</li>
-    </ul></nav>
-    <a class="btn" href="#booking">Записаться</a>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <h1>Стрижка, после которой<br><span>хочется фотографироваться</span></h1>
-    <p>Барбершоп в центре города. Запись онлайн за 30 секунд — без звонков и ожидания на линии.</p>
-    <div class="hero-cta">
-      <a class="btn" href="#booking">Записаться онлайн</a>
-      <a class="btn-outline" href="#">Написать в Telegram</a>
-    </div>
-    <div class="photo-row">
-      <div>фото мастера</div><div>фото интерьера</div><div>фото стрижки</div><div>фото отзыва</div>
-    </div>
-  </div>
-</section>
-
-<section class="services">
-  <div class="wrap">
-    <div class="section-title">
-      <h2>Услуги и цены</h2>
-      <p>Можно заменить на свои — структура остаётся прежней</p>
-    </div>
-    <div class="grid3">
-      <div class="card">
-        <h3>Мужская стрижка</h3>
-        <p>Стрижка машинкой и ножницами, укладка, мытьё головы</p>
-        <div class="price">от 1 500 ₽</div>
-      </div>
-      <div class="card">
-        <h3>Стрижка + борода</h3>
-        <p>Полный уход: стрижка, оформление и моделирование бороды</p>
-        <div class="price">от 2 200 ₽</div>
-      </div>
-      <div class="card">
-        <h3>Детская стрижка</h3>
-        <p>Для детей до 12 лет, в спокойном темпе</p>
-        <div class="price">от 1 000 ₽</div>
+  <header class="hero">
+    <div class="hero-bg" style="background-image:url('https://picsum.photos/seed/barbershopdark/1600/1000')"></div>
+    <div class="wrap">
+      <div class="kick reveal">Барбершоп · Красноярск · с 2014</div>
+      <h1 class="reveal">Мужской стиль <span class="g">без компромиссов</span></h1>
+      <p class="reveal">Стрижка, борода и бритьё опасной бритвой у мастеров, которые понимают форму головы лучше, чем вы сами. Виски, чай, музыка и час только для вас.</p>
+      <div class="cta-row reveal">
+        <a class="btn btn-g" href="#book">Онлайн-запись</a>
+        <a class="btn btn-o" href="#svc">Услуги и цены</a>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section class="gallery">
-  <div class="wrap">
-    <div class="section-title">
-      <h2>Галерея работ</h2>
-      <p>Сюда подставляются реальные фото клиента</p>
+  <div class="mq"><div class="mq-t">
+    СТРИЖКА <span>/</span> БОРОДА <span class="f">ГИЛЬДИЯ</span> БРИТЬЁ <span>/</span> КАМУФЛЯЖ СЕДИНЫ <span>/</span>
+    СТРИЖКА <span>/</span> БОРОДА <span class="f">ГИЛЬДИЯ</span> БРИТЬЁ <span>/</span> КАМУФЛЯЖ СЕДИНЫ <span>/</span>
+  </div></div>
+
+  <section class="sec"><div class="wrap two">
+    <div class="about reveal">
+      <div class="lbl">О барбершопе</div>
+      <h2>Не парикмахерская. Мужская территория.</h2>
+      <p>Мы не стрижём «под расчёску за 15 минут». Каждый мастер разбирается в форме, типе волос и характере клиента. Вы уходите не подстриженным, а собранным.</p>
+      <div class="stats">
+        <div><b>10</b><span>лет на рынке</span></div>
+        <div><b>6</b><span>мастеров</span></div>
+        <div><b>18k</b><span>клиентов</span></div>
+      </div>
     </div>
-    <div class="photo-row">
-      <div>фото 1</div><div>фото 2</div><div>фото 3</div><div>фото 4</div>
+    <div class="ph reveal" style="background-image:url('https://picsum.photos/seed/barberchair/700/900')"></div>
+  </div></section>
+
+  <section class="sec" id="svc"><div class="wrap">
+    <div class="reveal"><div class="lbl">Прайс</div><h2>Услуги и цены</h2></div>
+    <div class="svc">
+      <div class="it reveal"><div class="top"><h3>Мужская стрижка</h3><span class="pr">1500 ₽</span></div><p>Консультация, стрижка, укладка, стайлинг. Мытьё головы включено.</p></div>
+      <div class="it reveal"><div class="top"><h3>Стрижка + борода</h3><span class="pr">2200 ₽</span></div><p>Полный образ: стрижка и моделирование бороды опасной бритвой.</p></div>
+      <div class="it reveal"><div class="top"><h3>Бритьё бритвой</h3><span class="pr">1300 ₽</span></div><p>Горячее полотенце, королевское бритьё, уходовые масла.</p></div>
+      <div class="it reveal"><div class="top"><h3>Отец и сын</h3><span class="pr">2600 ₽</span></div><p>Две стрижки подряд. Прививаем стиль с детства.</p></div>
     </div>
-  </div>
-</section>
+  </div></section>
 
-<section class="booking" id="booking">
-  <div class="wrap">
-    <h2>Записаться на стрижку</h2>
-    <p>Оставьте телефон — мастер свяжется и подтвердит время</p>
-    <div class="form">
-      <input type="text" placeholder="Ваше имя">
-      <input type="tel" placeholder="Телефон">
-      <button class="btn" type="button">Отправить заявку</button>
+  <section class="sec"><div class="wrap">
+    <div class="reveal"><div class="lbl">Команда</div><h2>Мастера, к которым возвращаются</h2></div>
+    <div class="mst">
+      <div class="m reveal"><span class="ic">01</span><b>Здесь будет фото мастера</b>топ-барбер</div>
+      <div class="m reveal"><span class="ic">02</span><b>Здесь будет фото мастера</b>барбер-стилист</div>
+      <div class="m reveal"><span class="ic">03</span><b>Здесь будет фото мастера</b>мастер бритья</div>
     </div>
-  </div>
-</section>
+  </div></section>
 
-<footer>
-  <div class="wrap">
-    ул. Примерная, 10 · ежедневно 10:00–21:00 · +7 (999) 000-00-00<br>
-    Демо-лендинг подготовлен как пример работы для презентации клиентам
-  </div>
-</footer>
+  <section class="sec"><div class="wrap">
+    <div class="rev reveal">
+      <div class="stars">★★★★★</div>
+      <p class="q">«Первый раз, когда после барбершопа не хотелось ничего поправлять дома. Просто сделали идеально — и форму, и бороду.»</p>
+      <div class="who">Артём — клиент с 2021</div>
+    </div>
+  </div></section>
 
-<div class="wa-float">●</div>
+  <section class="final" id="book"><div class="wrap">
+    <h2 class="reveal">Запишитесь — <span style="color:var(--gold)">и почувствуйте разницу</span></h2>
+    <p class="reveal">Свободные окна на этой неделе. Онлайн-запись за 30 секунд.</p>
+    <div class="cta-row reveal" style="margin-top:36px"><a class="btn btn-g" href="#">Выбрать время</a></div>
+  </div></section>
 
+  <footer><div class="wrap">ГИЛЬДИЯ · барбершоп · Красноярск · демонстрационный сайт</div></footer>
+</main>
 
-<style>
-#_wm{position:fixed;bottom:78px;right:12px;z-index:99998;background:rgba(59,109,255,.16);color:#cfe0ff;
- border:1px solid rgba(125,178,255,.3);border-radius:99px;padding:6px 13px;font:600 11px/1 Outfit,system-ui,sans-serif;
- letter-spacing:.08em;pointer-events:none;backdrop-filter:blur(6px)}
-#_wmbg{position:fixed;inset:0;z-index:99990;pointer-events:none;
- background:repeating-linear-gradient(-30deg,transparent,transparent 140px,rgba(255,255,255,.018) 140px,rgba(255,255,255,.018) 280px)}
-#_cta{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:99999;
- background:linear-gradient(135deg,#3b6dff,#5b86ff);color:#fff;text-decoration:none;
- font:700 15px/1 Outfit,system-ui,sans-serif;padding:15px 26px;border-radius:14px;
- box-shadow:0 10px 34px rgba(59,109,255,.5);white-space:nowrap;
- -webkit-tap-highlight-color:transparent}
-#_cta:active{transform:translateX(-50%) scale(.97)}
-html,body{-webkit-user-select:none;user-select:none}
-</style>
-<div id="_wmbg"></div><div id="_wm">ДЕМО · A.R. Agency</div>
-<a id="_cta" href="../../?from=demo&cat=beauty">✨ Хочу такой сайт — заявка</a>
+<div id="dnav"><a id="dprev">‹</a><a href="../">Все примеры</a><a id="dnext">›</a></div>
+<div id="dwm">ДЕМО · A.R. Agency</div>
+<a id="dcta" href="../../?from=demo&cat=beauty">Хочу такой сайт</a>
+
 <script>
-document.addEventListener('contextmenu',e=>e.preventDefault());
+const nv=document.getElementById('nav');
+addEventListener('scroll',()=>nv.classList.toggle('sc',scrollY>40));
+try{
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+}catch(e){document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});}
+var R=['../beauty/','../services/','../shop/'],i=0;
+document.getElementById('dprev').href=R[(i-1+R.length)%R.length];
+document.getElementById('dnext').href=R[(i+1)%R.length];
 document.addEventListener('copy',e=>e.preventDefault());
 document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
  if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)||((e.ctrlKey||e.metaKey)&&['u','s'].indexOf(k)>-1)){e.preventDefault();return false;}});
 </script>
-
-<style>
-#_nav{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:100000;display:flex;gap:6px;
- background:rgba(10,15,28,.82);border:1px solid rgba(125,178,255,.28);border-radius:99px;padding:5px;
- backdrop-filter:blur(10px);font-family:Outfit,system-ui,sans-serif}
-#_nav a{display:grid;place-items:center;min-width:34px;height:34px;padding:0 12px;border-radius:99px;
- color:#cfe0ff;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
-#_nav a:active{background:rgba(59,109,255,.3)}
-#_nav a.mid{background:rgba(59,109,255,.16)}
-</style>
-<div id="_nav">
- <a id="_prev">‹</a><a class="mid" href="../">🖼 Все примеры</a><a id="_next">›</a>
-</div>
-<script>
-var _R=[["Барбершоп","../beauty/"],["Магазин","../shop/"],["Транспорт","../services/"],
-["Автосервис","../preview.html?cat=auto"],["Ремонт","../preview.html?cat=repair"],
-["Кафе","../preview.html?cat=food"],["Здоровье","../preview.html?cat=health"]];
-var _i=0,_n=_R.length;
-document.getElementById("_prev").href=_R[(_i-1+_n)%_n][1];
-document.getElementById("_next").href=_R[(_i+1)%_n][1];
-</script>
-<style>
-:root{--bg:#100d09;--bg2:#1a1611}
-h1,h2,h3{letter-spacing:-.01em}
-::selection{background:#c9a24a;color:#100d09}
-</style></body>
+</body>
 </html>
