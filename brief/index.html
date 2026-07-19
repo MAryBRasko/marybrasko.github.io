@@ -164,22 +164,23 @@ function finish(){
   document.getElementById('nav').style.display='none';
   const map={goal:'Задача',niche:'Ниша',site:'Сайт сейчас',budget:'Бюджет',when:'Сроки'};
   const rows=Object.keys(map).map(k=>`<div><span>${map[k]}</span><b>${A[k]||'—'}</b></div>`).join('');
-  app.innerHTML=`<div class="done"><div class="big">🎉</div>
-    <h2>Заявка готова!</h2><p class="q-sub">Ростислав свяжется с вами в ближайшее время.</p>
+  app.innerHTML=`<div class="done"><div class="big">✅</div>
+    <h2>Почти готово!</h2><p class="q-sub">Проверьте и отправьте заявку — свяжусь с вами в ближайшее время.</p>
     <div class="sum">${rows}
       ${A.refs?`<div><span>Референсы</span><b>${A.refs.split('\n')[0].slice(0,40)}…</b></div>`:''}
       <div><span>Имя</span><b>${A.name||'—'}</b></div>
       <div><span>Контакт</span><b>${A.contact||'—'}</b></div>
     </div>
-    <p class="q-sub">📎 Есть скриншоты или фото примеров? Пришлите их прямо в чат — сделаем в похожем стиле или лучше.</p>
-    <a id="waf" class="btn next" style="display:inline-block;text-decoration:none;margin-top:8px;max-width:320px" href="#">Не пришло? Продублировать в WhatsApp</a>
+    <button id="sendTg" class="btn next" style="width:100%;margin-top:6px">📨 Отправить заявку</button>
+    <a class="btn back" style="display:block;text-align:center;text-decoration:none;margin-top:10px" href="tel:+79620676846">📞 Позвонить: +7 962 067-68-46</a>
+    <p class="q-sub" style="margin-top:14px">📎 Скриншоты и фото примеров можно прислать в чат — сделаем в похожем стиле или лучше.</p>
     </div>`;
-  const wtext=`Заявка с брифа:%0AЗадача: ${A.goal||'-'}%0AНиша: ${A.niche||'-'}%0AСайт сейчас: ${A.site||'-'}%0AБюджет: ${A.budget||'-'}%0AСроки: ${A.when||'-'}%0AРеференсы: ${(A.refs||'-').slice(0,150)}%0AИмя: ${A.name||'-'}%0AКонтакт: ${A.contact||'-'}%0AКомментарий: ${A.note||'-'}`;
-  const waf=document.getElementById('waf'); if(waf) waf.href='https://wa.me/79620676846?text='+wtext;
   const payload=JSON.stringify({type:'brief',...A});
-  let sent=false;
-  try{ tg.sendData(payload); sent=true; }catch(e){ console.log('payload',payload); }
-  if(sent) setTimeout(()=>{try{tg.close();}catch(e){}},3000);
+  document.getElementById('sendTg').onclick=function(){
+    try{ tg.sendData(payload); }
+    catch(e){ this.textContent='✅ Отправлено!'; this.disabled=true;
+      try{tg.showPopup&&tg.showPopup({title:'Заявка отправлена','message':'Спасибо! Свяжусь с вами в ближайшее время.'});}catch(_){} }
+  };
 }
 render();
 </script>
