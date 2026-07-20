@@ -188,6 +188,7 @@ try{
     gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
   });
 }catch(e){document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});}
+setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){if(parseFloat(getComputedStyle(el).opacity)<0.6){el.style.opacity=1;el.style.transform='none';}});},1600);// подстраховка
 var R=['../beauty/','../services/','../shop/'],i=0;
 document.getElementById('dprev').href=R[(i-1+R.length)%R.length];
 document.getElementById('dnext').href=R[(i+1)%R.length];

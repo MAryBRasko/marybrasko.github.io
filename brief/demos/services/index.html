@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
-:root{--paper:#f2f1ec;--ink:#0f0f0d;--haz:#ff5a00;--mut:#6f6d65;--line:#0f0f0d}
+:root{--paper:#f2f1ec;--ink:#0f0f0d;--haz:#d94400;--mut:#57554e;--line:#0f0f0d}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.4;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -22,9 +22,9 @@ a{color:inherit;text-decoration:none}
 .nav{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:2px solid var(--ink);display:flex;align-items:stretch}
 .nav .b{padding:15px 20px;border-right:2px solid var(--ink);font-weight:900;letter-spacing:-.02em;font-size:19px;display:flex;align-items:center}
 .nav .b .r{color:var(--haz);font-size:11px;vertical-align:super;margin-left:2px}
-.nav .meta{flex:1;display:flex;align-items:center;padding:0 18px;font-size:11px;color:var(--mut)}
-.nav .cta{background:var(--haz);color:#fff;padding:0 26px;display:flex;align-items:center;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.02em}
-@media(max-width:640px){.nav .meta{display:none}}
+.nav .meta{flex:1;display:flex;align-items:center;padding:0 18px;font-size:11px;color:#4a4a45}
+.nav .cta{margin-left:auto;background:var(--haz);color:#fff;padding:0 24px;display:flex;align-items:center;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+@media(max-width:640px){.nav .meta{display:none}.nav .b{font-size:16px;padding:14px 16px}.nav .cta{font-size:12px;padding:0 16px;letter-spacing:0}}
 .hero{border-bottom:2px solid var(--ink);padding:6px 0 0}
 .hero .tape{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;padding:7px 0}
 .hero .tape .t{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;animation:mq 24s linear infinite}
@@ -161,6 +161,8 @@ footer{padding:24px 0;font-family:'JetBrains Mono',monospace;font-size:11px;lett
 try{gsap.registerPlugin(ScrollTrigger);
   gsap.utils.toArray('.reveal').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}}));
 }catch(e){document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});}
+// подстраховка: если анимация не сработала — принудительно показать
+setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){if(parseFloat(getComputedStyle(el).opacity)<0.6){el.style.opacity=1;el.style.transform='none';}});},1600);
 var R=['../beauty/','../services/','../shop/'],i=1;
 document.getElementById('dprev').href=R[(i-1+R.length)%R.length];
 document.getElementById('dnext').href=R[(i+1)%R.length];
